@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.activeLink {
+		@apply bg-brown-light text-sm md:text-lg text-yellow-300 font-semibold 
+    py-2 px-4 rounded-md;
+	}
+	.navLink {
+		@apply py-2 px-3 text-sm md:text-lg font-semibold rounded-md text-white
+    hover:text-yellow-300 hover:hover:bg-brown-light;
+	}
+	.icon {
+		@apply h-9 w-9 cursor-pointer hover:scale-125 transition transform duration-150 ease-out;
+	}
+}
