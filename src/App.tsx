@@ -68,7 +68,9 @@ const App: FC = () => {
 	return (
 		<Suspense
 			fallback={
-				<p className='text-lg font-bold text-center'>Loading...</p>
+				<p className='text-lg font-semibold mt-10 text-center'>
+					Loading...
+				</p>
 			}
 		>
 			{routes}
