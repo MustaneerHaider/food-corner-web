@@ -69,9 +69,7 @@ const App: FC = () => {
 	return (
 		<Suspense
 			fallback={
-				<div className='max-w-[100px] mx-auto mt-10'>
-					<Spinner />
-				</div>
+				<p className='text-lg font-bold text-center'>Loading...</p>
 			}
 		>
 			{routes}

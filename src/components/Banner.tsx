@@ -6,7 +6,7 @@ const Banner: FC = () => {
 	return (
 		<div className='relative'>
 			<div
-				className='absolute bottom-0 h-32 z-20 w-full bg-gradient-to-t 
+				className='hidden sm:inline-flex absolute bottom-0 h-32 z-20 w-full bg-gradient-to-t 
       from-gray-100 to-transparent'
 			/>
 			<Carousel

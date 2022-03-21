@@ -25,7 +25,7 @@ const Order: FC<OrderProps> = ({ products, createdAt, totalAmount, _id }) => {
 	};
 
 	return (
-		<div className='border rounded-md'>
+		<div className='border rounded-md shadow'>
 			<header className='relative flex items-center p-4 bg-gray-100'>
 				<span className='absolute top-0 left-4 text-gray-500 text-[11px]'>
 					Order # {_id}
