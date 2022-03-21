@@ -25,7 +25,10 @@ const Checkout: FC = () => {
 	const stripe = useStripe();
 
 	useEffect(() => {
-		dispatch(getCart(idToken!));
+		if (items.length === 0) {
+			dispatch(getCart(idToken!));
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch, idToken]);
 
 	function getItems() {

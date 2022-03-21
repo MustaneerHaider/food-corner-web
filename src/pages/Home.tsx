@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import ProductFeed from '../components/ProductFeed';
 import { selectAuthToken } from '../store/slices/authSlice';
 import Spinner from '../components/Spinner';
-import { getCart } from '../store/slices/cartSlice';
+import { getCart, selectCartItems } from '../store/slices/cartSlice';
 import {
 	fetchProducts,
 	selectIsLoading,
@@ -17,13 +17,16 @@ const Home: FC = () => {
 	const products = useSelector(selectProducts);
 	const isLoading = useSelector(selectIsLoading);
 	const idToken = useSelector(selectAuthToken);
+	const cartItems = useSelector(selectCartItems);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (products.length === 0) {
 			dispatch(fetchProducts(idToken!));
 		}
-		dispatch(getCart(idToken!));
+		if (cartItems.length === 0) {
+			dispatch(getCart(idToken!));
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [idToken, dispatch]);
 

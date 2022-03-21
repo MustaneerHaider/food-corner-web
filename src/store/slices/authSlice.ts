@@ -54,16 +54,7 @@ const authSlice = createSlice({
 				autoLogout(payload.expiresIn);
 			}
 		},
-		logout(state) {
-			state.tokenId = null;
-			state.userId = null;
-
-			// remove auth data from LS
-			localStorage.removeItem('token');
-			localStorage.removeItem('userId');
-			localStorage.removeItem('expirationDate');
-			localStorage.removeItem('isAdmin');
-		}
+		logout() {}
 	}
 });
 

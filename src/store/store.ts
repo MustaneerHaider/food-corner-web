@@ -1,14 +1,33 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {
+	configureStore,
+	combineReducers,
+	PayloadAction
+} from '@reduxjs/toolkit';
 import authReducer from './slices/authSlice';
 import cartReducer from './slices/cartSlice';
 import productsReducer from './slices/productsSlice';
 
+const combinedReducer = combineReducers({
+	auth: authReducer,
+	cart: cartReducer,
+	prods: productsReducer
+});
+
+const rootReducer = (state: any, action: PayloadAction) => {
+	if (action.type === 'authentication/logout') {
+		// remove auth data from LS
+		localStorage.removeItem('token');
+		localStorage.removeItem('userId');
+		localStorage.removeItem('expirationDate');
+		localStorage.removeItem('isAdmin');
+		// reset the store
+		state = undefined;
+	}
+	return combinedReducer(state, action);
+};
+
 export const store = configureStore({
-	reducer: {
-		auth: authReducer,
-		cart: cartReducer,
-		prods: productsReducer
-	},
+	reducer: rootReducer,
 	devTools: process.env.NODE_ENV !== 'production'
 });
 

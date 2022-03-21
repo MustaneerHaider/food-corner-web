@@ -17,10 +17,11 @@ const Orders: FC = () => {
 	const isLoading = useSelector(selectIsLoading);
 	const dispatch = useDispatch();
 
-	console.log(orders);
-
 	useEffect(() => {
-		dispatch(fetchOrders(idToken!));
+		if (orders.length === 0) {
+			dispatch(fetchOrders(idToken!));
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch, idToken]);
 
 	function getItems() {
