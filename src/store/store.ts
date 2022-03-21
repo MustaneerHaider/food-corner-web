@@ -20,7 +20,7 @@ const rootReducer = (state: any, action: PayloadAction) => {
 		localStorage.removeItem('userId');
 		localStorage.removeItem('expirationDate');
 		localStorage.removeItem('isAdmin');
-		// reset the store
+		// reset the store after logout...
 		state = undefined;
 	}
 	return combinedReducer(state, action);

@@ -10,7 +10,6 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import NotFound from './pages/NotFound';
 import Success from './pages/Success';
-import { Spinner } from '@chakra-ui/react';
 
 // load stripe outside of component tree
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY!);
