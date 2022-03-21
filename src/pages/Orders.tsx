@@ -17,6 +17,8 @@ const Orders: FC = () => {
 	const isLoading = useSelector(selectIsLoading);
 	const dispatch = useDispatch();
 
+	console.log(orders);
+
 	useEffect(() => {
 		dispatch(fetchOrders(idToken!));
 	}, [dispatch, idToken]);

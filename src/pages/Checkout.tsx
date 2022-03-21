@@ -59,8 +59,8 @@ const Checkout: FC = () => {
 					<section className='flex-grow bg-white p-6 m-5 shadow space-y-10'>
 						<h1 className='text-3xl pb-4 border-b'>
 							{items.length > 0
-								? 'Your Shopping Cart'
-								: 'Your Shopping Cart is empty'}
+								? 'Your Cart'
+								: 'Your Cart is empty'}
 						</h1>
 
 						{items.map(

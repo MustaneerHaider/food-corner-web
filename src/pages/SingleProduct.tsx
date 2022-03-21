@@ -46,7 +46,7 @@ const SingleProduct: FC = () => {
 			setProduct(prevProd => {
 				const updatedProd = { ...prevProd! };
 				const updatedReviews = [...prevProd!.reviews!];
-				updatedReviews.unshift({
+				updatedReviews.push({
 					_id: Math.random().toString(),
 					reviewId: { userName: values.name, review: values.review }
 				});

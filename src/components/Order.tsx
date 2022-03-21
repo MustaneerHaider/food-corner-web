@@ -1,13 +1,28 @@
 import { FC } from 'react';
 import { Order as OrderProps } from '../models/order';
 import Currency from 'react-currency-formatter';
+import { useSelector } from 'react-redux';
+import { selectAuthToken } from '../store/slices/authSlice';
 
 const Order: FC<OrderProps> = ({ products, createdAt, totalAmount, _id }) => {
-	function getQuantity() {
+	const idToken = useSelector(selectAuthToken);
+
+	const getQuantity = () => {
 		return products.reduce((total, { quantity }) => {
 			return total + quantity;
 		}, 0);
-	}
+	};
+
+	const getInvoiceHandler = async () => {
+		await fetch(
+			`${process.env.REACT_APP_BASE_URL}/products/invoice/${_id}`,
+			{
+				headers: {
+					Authorization: `Bearer ${idToken}`
+				}
+			}
+		);
+	};
 
 	return (
 		<div className='border rounded-md'>
@@ -18,6 +33,7 @@ const Order: FC<OrderProps> = ({ products, createdAt, totalAmount, _id }) => {
 				<span
 					className='absolute top-1 right-4 text-sm text-blue-400 
         cursor-pointer hover:underline'
+					onClick={getInvoiceHandler}
 				>
 					Invoice
 				</span>

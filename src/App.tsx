@@ -1,23 +1,26 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, lazy, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
-import Logout from './components/Logout';
-import AddProduct from './pages/admin/AddProduct';
-import Checkout from './pages/Checkout';
-import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Logout from './components/Logout';
 import { selectAuthStatus, selectIsAdmin } from './store/slices/authSlice';
 import { autoLogin } from './store/slices/authSlice';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import NotFound from './pages/NotFound';
 import Success from './pages/Success';
-import Orders from './pages/Orders';
-import SingleProduct from './pages/SingleProduct';
+import { Spinner } from '@chakra-ui/react';
 
 // load stripe outside of component tree
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY!);
+
+// lazy loaded components
+const ProductDetail = lazy(() => import('./pages/SingleProduct'));
+const Home = lazy(() => import('./pages/Home'));
+const Checkout = lazy(() => import('./pages/Checkout'));
+const Orders = lazy(() => import('./pages/Orders'));
+const AddProduct = lazy(() => import('./pages/admin/AddProduct'));
 
 const App: FC = () => {
 	const isAuth = useSelector(selectAuthStatus);
@@ -41,7 +44,7 @@ const App: FC = () => {
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/logout' element={<Logout />} />
-				<Route path='/products/:id' element={<SingleProduct />} />
+				<Route path='/products/:id' element={<ProductDetail />} />
 				<Route
 					path='/checkout'
 					element={
@@ -63,7 +66,17 @@ const App: FC = () => {
 		);
 	}
 
-	return routes;
+	return (
+		<Suspense
+			fallback={
+				<div className='max-w-[100px] mx-auto mt-10'>
+					<Spinner />
+				</div>
+			}
+		>
+			{routes}
+		</Suspense>
+	);
 };
 
 export default App;

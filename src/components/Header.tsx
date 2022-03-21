@@ -13,7 +13,7 @@ import {
 	MenuItem,
 	MenuList
 } from '@chakra-ui/react';
-import { FaBars as HamburgerIcon } from 'react-icons/fa';
+import { FaBars as MenuIcon } from 'react-icons/fa';
 
 const Header: FC = () => {
 	const navigate = useNavigate();
@@ -36,7 +36,7 @@ const Header: FC = () => {
 				</div>
 
 				{/* Right - desktop nav */}
-				<nav className='hidden lg:block'>
+				<nav className='hidden lg:inline-flex'>
 					<ul className='flex items-center md:space-x-4'>
 						{isAuth && isAdmin ? (
 							<Link href='/admin/create-product'>
@@ -83,13 +83,13 @@ const Header: FC = () => {
 				</nav>
 
 				{/* Right - mobile nav */}
-				<Box className='lg:hidden'>
+				<Box as='nav' className='lg:hidden'>
 					<Menu>
 						<MenuButton
 							as={IconButton}
 							aria-label='Options'
 							icon={
-								<HamburgerIcon className='h-6 w-6 text-yellow-500' />
+								<MenuIcon className='h-6 w-6 text-yellow-500' />
 							}
 							variant='outline'
 							border='none'
