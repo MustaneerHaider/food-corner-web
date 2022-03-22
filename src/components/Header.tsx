@@ -103,6 +103,13 @@ const Header: FC = () => {
 								<Fragment>
 									<MenuItem
 										as={NavLink}
+										to='/admin/create-product'
+										className='font-semibold'
+									>
+										Add Product
+									</MenuItem>
+									<MenuItem
+										as={NavLink}
 										to='/checkout'
 										className='font-semibold'
 									>
