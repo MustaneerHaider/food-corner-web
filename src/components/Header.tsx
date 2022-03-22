@@ -99,15 +99,17 @@ const Header: FC = () => {
 							_active={{ bg: 'transparent' }}
 						/>
 						<MenuList>
+							{isAuth && isAdmin ? (
+								<MenuItem
+									as={NavLink}
+									to='/admin/create-product'
+									className='font-semibold'
+								>
+									Add Product
+								</MenuItem>
+							) : null}
 							{isAuth && (
 								<Fragment>
-									<MenuItem
-										as={NavLink}
-										to='/admin/create-product'
-										className='font-semibold'
-									>
-										Add Product
-									</MenuItem>
 									<MenuItem
 										as={NavLink}
 										to='/checkout'
